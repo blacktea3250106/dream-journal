@@ -29,7 +29,7 @@
 - **Remembers your history**: up to 10 entries from the last 30 days go into each reading, so it can point out recurring symbols and moods.
 - **Stays safe by design**: prompts forbid diagnosis, fortune-telling and fatalistic wording; when the cognitive reading flags risk signals, the card shows Taiwan's 1925 and 1980 support hotlines.
 
-Built solo in May 2026; the first working MVP took about a day.
+Built solo in May 2026 as a product exercise: PRD first, then prompts tuned against a fixed reference dream, then row-level security and a demo mode.
 
 ## Demo
 
@@ -62,7 +62,7 @@ All screenshots are from demo mode.
   </tr>
   <tr>
     <td><img src="docs/screenshots/06-cognitive-card.png" alt="Cognitive neuroscience interpretation card"></td>
-    <td><a href="docs/screenshots/04-five-schools.png"><img src="docs/screenshots/00-hero.png" alt="Five-school comparison page"></a></td>
+    <td><a href="docs/screenshots/04-five-schools.png"><img src="docs/screenshots/04-five-schools.png" alt="Five-school comparison page"></a></td>
   </tr>
   <tr>
     <td align="center"><sub><b>Cognitive neuroscience reading</b> of the same dream</sub></td>
@@ -151,7 +151,7 @@ The prompts were tuned against a fictional reference dream (`samples/dream_01.md
 
 ### 2. Prompt caching and cost
 
-Each system prompt is about 3,000 characters of mostly Chinese text, which should clear Sonnet 4.6's 1,024-token minimum for caching. Cache reads are billed at a tenth of the normal input price. The route logs `cacheReadTokens` and `cacheWriteTokens` for every call, so the hit rate can be checked in logs instead of assumed.
+Each assembled system prompt (shared rules plus one school) is about 1,800 characters of mostly Chinese text. The model only caches prefixes of at least 1,024 tokens on Sonnet 4.6, and a prefix below that is silently not cached, so this is checked in the logs rather than assumed. Cache reads are billed at a tenth of the normal input price. The route logs `cacheReadTokens` and `cacheWriteTokens` for every call, so the hit rate can be checked in logs instead of assumed.
 
 The planning estimate in the PRD is about US$0.017 per reading before caching (around 1,500 input and 800 output tokens on Sonnet 4.6).
 
