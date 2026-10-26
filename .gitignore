@@ -1,0 +1,54 @@
+# ---------- secrets ----------
+# Every env file stays local. Only the placeholder template is committed.
+.env
+.env.*
+**/.env
+**/.env.*
+!**/.env.example
+*.pem
+*.key
+
+# ---------- dependencies & build output ----------
+node_modules/
+.pnp
+.pnp.js
+.next/
+out/
+build/
+dist/
+coverage/
+*.tsbuildinfo
+next-env.d.ts
+.vercel/
+
+# ---------- logs ----------
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+*.log
+
+# ---------- OS / editor ----------
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# ---------- local tooling & scratch ----------
+# Personal agent settings
+.claude/
+# Early Markdown drafts of the prompts; the shipped versions live in web/lib/prompts/
+prototypes/
+# create-next-app boilerplate, superseded by the root README
+web/README.md
+# Internal market notes that name third-party products
+docs/competitor_analysis.md
+# Older env template, superseded by web/.env.example
+web/.env.local.example
+
+# ---------- large media ----------
+*.mp4
+*.mov
+*.zip
